@@ -2,6 +2,7 @@
 
 import uvicorn
 import asyncio
+#import uvloop
 
 
 async def app(scope, receive, send):
@@ -26,12 +27,12 @@ async def app(scope, receive, send):
 
 
 if __name__ == "__main__":
-    asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
+    #asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
     uvicorn.run(
         "main_uvicorn:app",
         host="0.0.0.0",
         port=8000,
         reload=False,
         log_level="error",
-        http="httptools",
+        http="auto",
     )

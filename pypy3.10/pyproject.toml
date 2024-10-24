@@ -1,9 +1,9 @@
 [project]
-name = "hello-python3-11"
+name = "hello-pypy-10"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.10"
 dependencies = [
     "httptools>=0.6.4",
     "uvicorn>=0.30.1",
