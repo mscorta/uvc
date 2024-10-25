@@ -78,6 +78,7 @@ source = { virtual = "." }
 dependencies = [
     { name = "httptools" },
     { name = "openai" },
+    { name = "pip" },
     { name = "python-dotenv" },
     { name = "uvicorn" },
     { name = "uvloop" },
@@ -87,6 +88,7 @@ dependencies = [
 requires-dist = [
     { name = "httptools", specifier = ">=0.6.4" },
     { name = "openai", specifier = ">=1.52.2" },
+    { name = "pip", specifier = ">=24.2" },
     { name = "python-dotenv", specifier = ">=1.0.1" },
     { name = "uvicorn", specifier = ">=0.32.0" },
     { name = "uvloop", specifier = ">=0.21.0" },
@@ -182,6 +184,15 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/a5/78/1c4658043cdbb7faf7f388cbb3902d5f8b9a307e10f2021b1a8a4b0b8b15/openai-1.52.2.tar.gz", hash = "sha256:87b7d0f69d85f5641678d414b7ee3082363647a5c66a462ed7f3ccb59582da0d", size = 310119 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/55/4c/906b5b32c4c01402ac3b4c3fc28f601443ac5c6f13c84a95dd178c8d545d/openai-1.52.2-py3-none-any.whl", hash = "sha256:57e9e37bc407f39bb6ec3a27d7e8fb9728b2779936daa1fcf95df17d3edfaccc", size = 386947 },
+]
+
+[[package]]
+name = "pip"
+version = "24.2"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/4d/87/fb90046e096a03aeab235e139436b3fe804cdd447ed2093b0d70eba3f7f8/pip-24.2.tar.gz", hash = "sha256:5b5e490b5e9cb275c879595064adce9ebd31b854e3e803740b72f9ccf34a45b8", size = 1922041 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/d4/55/90db48d85f7689ec6f81c0db0622d704306c5284850383c090e6c7195a5c/pip-24.2-py3-none-any.whl", hash = "sha256:2cd581cf58ab7fcfca4ce8efa6dcacd0de5bf8d0a3eb9ec927e07405f4d9e2a2", size = 1815170 },
 ]
 
 [[package]]

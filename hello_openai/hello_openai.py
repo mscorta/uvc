@@ -2,6 +2,8 @@ import openai
 import asyncio
 import dotenv
 import os
+import sys
+
 from openai.types.chat.chat_completion_user_message_param import (
     ChatCompletionUserMessageParam,
 )
@@ -103,4 +105,11 @@ def start_uvicorn():
 
 
 if __name__ == "__main__":
-    start_uvicorn()
+    if len(sys.argv) > 1:
+        mode: str = sys.argv[1]
+        if mode == "uvicorn":
+            start_uvicorn()
+        else:
+            run()
+    else:
+        run()
