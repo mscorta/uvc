@@ -7,6 +7,7 @@ import asyncio
 
 async def app(scope, receive, send):
     assert scope["type"] == "http"
+    await asyncio.sleep (1)
 
     await send(
         {
