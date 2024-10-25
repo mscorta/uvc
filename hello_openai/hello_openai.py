@@ -5,9 +5,11 @@ import os
 from openai.types.chat.chat_completion_user_message_param import (
     ChatCompletionUserMessageParam,
 )
-from typing import List, Optional
+from typing import List, Optional, ClassVar
 from openai.types.chat.chat_completion import ChatCompletion, Choice
 import time
+import uvicorn
+import uvloop
 
 
 class Chatter:
@@ -43,7 +45,39 @@ class Chatter:
         return result
 
 
-def main():
+class Client:
+    client: ClassVar[Chatter] = Chatter()
+
+
+async def app(scope, receive, send):
+    # assert scope["type"] == "http"
+    # path: str = scope.get("path", "/")
+    status: int = 200
+    result: str = "ok"
+    try:
+        result = await Client.client.get_openai_response()
+    except Exception as e:
+        status = 500
+        result = str(e)
+
+    await send(
+        {
+            "type": "http.response.start",
+            "status": status,
+            "headers": [
+                [b"content-type", b"text/plain"],
+            ],
+        }
+    )
+    await send(
+        {
+            "type": "http.response.body",
+            "body": result.encode(),
+        }
+    )
+
+
+def run():
     chatter: Chatter = Chatter()
     n: int = 10
     start: int = time.time_ns()
@@ -56,5 +90,17 @@ def main():
     print(f"Took {took:.2f} s {reqs:.2f} req/s")
 
 
+def start_uvicorn():
+    # Call the model and print the result
+    asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
+    uvicorn.run(
+        "hello_openai:app",
+        host="0.0.0.0",
+        port=8000,
+        reload=False,
+        log_level="error",
+    )
+
+
 if __name__ == "__main__":
-    main()
+    start_uvicorn()
